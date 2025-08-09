@@ -24,7 +24,7 @@ jobs:
       - name: "Verificação da Versao NodeJS"
         run: node --version
       - name: "Definicao da versao 20.13.1"
-      - uses: actions/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20.13.1'
       - name: "Verificação da Versao NodeJS"

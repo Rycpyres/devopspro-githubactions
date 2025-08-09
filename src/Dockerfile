@@ -1,8 +1,15 @@
 FROM golang:1.22.0-alpine3.19 as builder
-WORKDIR /build 
+WORKDIR /build
+
+# Copie apenas os arquivos de dependência primeiro
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Agora copie o restante do código
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o app 
- 
+
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o app
+
 FROM alpine:3.19 as final
 RUN adduser --uid 1000 --disabled-password appuser
 USER appuser

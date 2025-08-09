@@ -12,3 +12,20 @@ jobs:
         run: echo "Hello World"
       - name: "Segunda acao"
         run: echo "Voce criou o seu primeiro workflow"
+      - name: "Script Python"
+        run: |
+          variavel = "Hello from Python"
+          print(variavel)
+        shell: python
+  segundo-job:
+    name: "Instalaçao do Ambiente NodeJS"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Verificação da Versao NodeJS"
+        run: node --version
+      - name: "Definicao da versao 20.13.1"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.13.1'
+      - name: "Verificação da Versao NodeJS"
+        run: node --version

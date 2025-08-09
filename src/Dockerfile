@@ -2,7 +2,7 @@ FROM golang:1.22.0-alpine3.19 as builder
 WORKDIR /build
 
 # Copie apenas os arquivos de dependência primeiro
-COPY go.mod go.sum ./
+COPY go.mod ./
 RUN go mod download
 
 # Agora copie o restante do código

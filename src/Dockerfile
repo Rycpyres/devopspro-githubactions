@@ -1,4 +1,4 @@
-FROM golang:1.24.4-alpine3.19 AS builder
+FROM golang:1.22-alpine AS builder
 WORKDIR /build
 
 # Copie apenas os arquivos de dependência primeiro

@@ -23,3 +23,21 @@ jobs:
           tags: |
             rycpyres/aula-primeira-pipeline:v${{ github.run_number }}
             rycpyres/aula-primeira-pipeline:latest
+  CD:
+    runs-on: ubuntu-latest
+    needs: CI
+    steps:
+      - name: Obtendo o codigo
+        uses: actions/checkout@4.1.5
+      - name: Configuracao Kubernetes
+        uses: azure/k8s-set-context@v4.0.0
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: Execucao do Manifesto
+        uses: azure/k8s-deploy@v5
+        with:
+          manifests: |
+            ./k8s/deployment.yaml
+          images: |
+            rycpyres/aula-primeira-pipeline:v${{ github.run_number }}

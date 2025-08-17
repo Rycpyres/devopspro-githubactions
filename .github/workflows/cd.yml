@@ -1,0 +1,9 @@
+name: Deploy Fake
+on:
+    workflow_call:
+jobs:
+    deploy-kubernetes:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Deploy to Kubernetes
+            run: echo "Execução do comando de deploy para Kubernetes"

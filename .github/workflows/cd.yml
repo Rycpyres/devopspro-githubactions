@@ -1,9 +1,15 @@
 name: Deploy Fake
 on:
     workflow_call:
+        inputs:
+            ambiente: 
+                type: string
+                default: "desenvolvimento"
+                required: true
+                description: "Ambiente de Desenvolvimento"
 jobs:
     deploy-kubernetes:
         runs-on: ubuntu-latest
         steps:
           - name: Deploy to Kubernetes
-            run: echo "Execução do comando de deploy para Kubernetes"
+            run: echo "Executando o deploy no ambiente de ${{ inputs.ambiente }}"

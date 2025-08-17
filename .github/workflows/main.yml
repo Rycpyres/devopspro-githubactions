@@ -1,6 +1,16 @@
 name: CI/CD Fake
 on:
   workflow_dispatch:
+    inputs:
+      ambiente:
+        type: choice
+        default: "desenvolvimento"
+        required: true
+        description: "Ambiente de Desenvolvimento"
+        options:
+          - desenvolvimento
+          - homologacao
+          - producao
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -14,3 +24,5 @@ jobs:
   CD:
     needs: [CI]
     uses: ./.github/workflows/cd.yml
+    with:
+      ambiente: "desenvolvimento"

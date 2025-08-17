@@ -11,4 +11,6 @@ jobs:
         run: echo "Execução do comando de teste"
       - name: Publicando a Release
         run: echo "Execução do comando de publicação"
-  
+  CD:
+    needs: [CI]
+    uses: ./.github/workflows/cd.yml
